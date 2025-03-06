@@ -9,41 +9,369 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.hero {
+				padding: 4rem 1rem;
+				background: linear-gradient(90deg, rgba(35,55,255,0.1) 0%, rgba(35,55,255,0.05) 100%);
+				text-align: center;
+				border-radius: 0.5rem;
+				margin-bottom: 2rem;
+			}
+			.hero h1 {
+				margin-bottom: 1rem;
+				color: var(--accent);
+			}
+			.hero p {
+				font-size: 1.2rem;
+				max-width: 600px;
+				margin: 0 auto;
+			}
+			.category {
+				margin-top: 3rem;
+				margin-bottom: 2rem;
+			}
+			.category h2 {
+				border-bottom: 2px solid var(--accent);
+				padding-bottom: 0.5rem;
+				display: inline-block;
+			}
+			.company-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+				gap: 1.5rem;
+				margin-top: 1.5rem;
+			}
+			.company-card {
+				border: 1px solid rgba(var(--gray-light), 1);
+				border-radius: 8px;
+				padding: 1.5rem;
+				transition: transform 0.2s, box-shadow 0.2s;
+				background: white;
+			}
+			.company-card:hover {
+				transform: translateY(-5px);
+				box-shadow: var(--box-shadow);
+			}
+			.company-card h3 {
+				margin-top: 0;
+				font-size: 1.25rem;
+				color: var(--accent-dark);
+			}
+			.company-card p {
+				margin-bottom: 0.5rem;
+				font-size: 0.95rem;
+				line-height: 1.5;
+			}
+			.tag {
+				display: inline-block;
+				background-color: rgba(var(--gray-light), 1);
+				padding: 0.25rem 0.5rem;
+				border-radius: 4px;
+				font-size: 0.75rem;
+				margin-right: 0.5rem;
+				margin-bottom: 0.5rem;
+			}
+			.cta {
+				margin-top: 3rem;
+				text-align: center;
+				padding: 2rem;
+				background-color: rgba(var(--gray-light), 0.5);
+				border-radius: 8px;
+			}
+			.pricing-tag {
+				font-size: 0.8rem;
+				background-color: #f3f4f6;
+				padding: 0.25rem 0.5rem;
+				border-radius: 4px;
+				margin-top: 0.5rem;
+				display: inline-block;
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section class="hero">
+				<h1>SOC 2 Compliance Solutions Directory</h1>
+				<p>
+					A comprehensive guide to companies that can help your organization achieve and maintain SOC 2 compliance,
+					categorized by service type and specialization.
+				</p>
+			</section>
+
+			<section class="category">
+				<h2>Compliance Automation Platforms</h2>
+				<p>These platforms automate evidence collection, security questionnaires, and compliance documentation to streamline the SOC 2 compliance process.</p>
+				
+				<div class="company-grid">
+					<div class="company-card">
+						<h3>Drata</h3>
+						<p>Continuous compliance monitoring and automation platform that streamlines SOC 2, ISO 27001, GDPR, HIPAA, and more.</p>
+						<div>
+							<span class="tag">Evidence Collection</span>
+							<span class="tag">Continuous Monitoring</span>
+							<span class="tag">Risk Management</span>
+						</div>
+						<div class="pricing-tag">Starting at $5K/year</div>
+					</div>
+					
+					<div class="company-card">
+						<h3>Secureframe</h3>
+						<p>All-in-one compliance platform that helps companies achieve and maintain SOC 2, ISO 27001, GDPR, and HIPAA compliance quickly.</p>
+						<div>
+							<span class="tag">Policy Templates</span>
+							<span class="tag">Vendor Management</span>
+							<span class="tag">Security Training</span>
+						</div>
+						<div class="pricing-tag">Custom Pricing</div>
+					</div>
+					
+					<div class="company-card">
+						<h3>Vanta</h3>
+						<p>Automated security and compliance platform that helps companies get and stay compliant with SOC 2, HIPAA, and ISO 27001.</p>
+						<div>
+							<span class="tag">Automated Monitoring</span>
+							<span class="tag">Risk Assessment</span>
+							<span class="tag">Audit Preparation</span>
+						</div>
+						<div class="pricing-tag">Starting at $3K/year</div>
+					</div>
+
+					<div class="company-card">
+						<h3>Sprinto</h3>
+						<p>Cloud-based compliance automation platform that helps SaaS companies achieve compliance certifications with minimal effort.</p>
+						<div>
+							<span class="tag">Controls Management</span>
+							<span class="tag">Compliance Dashboard</span>
+							<span class="tag">Integrated Audits</span>
+						</div>
+						<div class="pricing-tag">Starting at $8K/year</div>
+					</div>
+
+					<div class="company-card">
+						<h3>Koop</h3>
+						<p>AI-powered compliance platform that helps businesses achieve SOC 2 compliance with smart automation and guided workflows.</p>
+						<div>
+							<span class="tag">AI-Assisted</span>
+							<span class="tag">Policy Generator</span>
+							<span class="tag">Control Mapping</span>
+						</div>
+						<div class="pricing-tag">Custom Pricing</div>
+					</div>
+
+					<div class="company-card">
+						<h3>Scrut Automation</h3>
+						<p>Risk observability and compliance automation platform for fast-growing startups and SMBs.</p>
+						<div>
+							<span class="tag">Compliance Monitoring</span>
+							<span class="tag">Control Testing</span>
+							<span class="tag">Risk Management</span>
+						</div>
+						<div class="pricing-tag">Starting at $6K/year</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="category">
+				<h2>Audit Firms & Attestation Providers</h2>
+				<p>These firms provide professional SOC 2 audit services and can issue attestation reports required for compliance.</p>
+				
+				<div class="company-grid">
+					<div class="company-card">
+						<h3>A-LIGN</h3>
+						<p>Cybersecurity and compliance firm specializing in providing SOC 2 audits and other compliance assessments.</p>
+						<div>
+							<span class="tag">SOC 2 Audits</span>
+							<span class="tag">ISO Certification</span>
+							<span class="tag">Readiness Assessments</span>
+						</div>
+						<div class="pricing-tag">Custom Pricing</div>
+					</div>
+					
+					<div class="company-card">
+						<h3>IS Partners</h3>
+						<p>Certified public accounting firm focused on providing SOC reports and other compliance attestations.</p>
+						<div>
+							<span class="tag">CPA Firm</span>
+							<span class="tag">SOC 1, 2, 3 Reports</span>
+							<span class="tag">HITRUST Assessments</span>
+						</div>
+						<div class="pricing-tag">Based on Scope</div>
+					</div>
+					
+					<div class="company-card">
+						<h3>Moore Colson</h3>
+						<p>Top accounting firm providing SOC 2 audits and other IT assurance services with a business advisory approach.</p>
+						<div>
+							<span class="tag">CPA Firm</span>
+							<span class="tag">Risk Advisory</span>
+							<span class="tag">IT Assurance</span>
+						</div>
+						<div class="pricing-tag">Custom Pricing</div>
+					</div>
+					
+					<div class="company-card">
+						<h3>Scytale</h3>
+						<p>SOC 2 automation and professional audit services combined into a single streamlined platform.</p>
+						<div>
+							<span class="tag">Hybrid Approach</span>
+							<span class="tag">Audit + Software</span>
+							<span class="tag">Continuous Compliance</span>
+						</div>
+						<div class="pricing-tag">Starting at $15K</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="category">
+				<h2>Security & Identity Management</h2>
+				<p>These companies provide tools and services that help organizations implement security controls required for SOC 2 compliance.</p>
+				
+				<div class="company-grid">
+					<div class="company-card">
+						<h3>Teleport</h3>
+						<p>Access management platform that provides secure access to SSH servers, Kubernetes clusters, web applications, and databases.</p>
+						<div>
+							<span class="tag">Identity-based Access</span>
+							<span class="tag">Infrastructure Access</span>
+							<span class="tag">Zero Trust</span>
+						</div>
+						<div class="pricing-tag">Free Open Source & Paid Plans</div>
+					</div>
+					
+					<div class="company-card">
+						<h3>CyberArk</h3>
+						<p>Enterprise-grade privileged access management solution that helps secure infrastructure and applications.</p>
+						<div>
+							<span class="tag">Privileged Access</span>
+							<span class="tag">Secrets Management</span>
+							<span class="tag">Identity Security</span>
+						</div>
+						<div class="pricing-tag">Enterprise Pricing</div>
+					</div>
+					
+					<div class="company-card">
+						<h3>Imperva</h3>
+						<p>Comprehensive security platform for applications, APIs, and data that helps meet compliance requirements.</p>
+						<div>
+							<span class="tag">Web App Firewall</span>
+							<span class="tag">DDoS Protection</span>
+							<span class="tag">Data Security</span>
+						</div>
+						<div class="pricing-tag">Tiered Plans</div>
+					</div>
+
+					<div class="company-card">
+						<h3>Bright Defense</h3>
+						<p>Application security platform offering SAST, DAST, and SCA solutions to secure software development lifecycle.</p>
+						<div>
+							<span class="tag">Application Security</span>
+							<span class="tag">Vulnerability Scanning</span>
+							<span class="tag">Code Security</span>
+						</div>
+						<div class="pricing-tag">Based on Usage</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="category">
+				<h2>GRC & Risk Management Platforms</h2>
+				<p>These platforms help manage governance, risk, and compliance needs in an integrated way.</p>
+				
+				<div class="company-grid">
+					<div class="company-card">
+						<h3>OneTrust</h3>
+						<p>Comprehensive privacy, security, and governance platform that includes SOC 2 compliance management capabilities.</p>
+						<div>
+							<span class="tag">Privacy Management</span>
+							<span class="tag">Third-Party Risk</span>
+							<span class="tag">GRC Platform</span>
+						</div>
+						<div class="pricing-tag">Enterprise Pricing</div>
+					</div>
+					
+					<div class="company-card">
+						<h3>Hyperproof</h3>
+						<p>Compliance operations platform that helps organizations efficiently manage multiple compliance frameworks.</p>
+						<div>
+							<span class="tag">Control Mapping</span>
+							<span class="tag">Audit Management</span>
+							<span class="tag">Evidence Collection</span>
+						</div>
+						<div class="pricing-tag">Starting at $12K/year</div>
+					</div>
+					
+					<div class="company-card">
+						<h3>Ostendio</h3>
+						<p>Integrated risk management platform that helps organizations build, operate, and showcase their security program.</p>
+						<div>
+							<span class="tag">MyVCM Platform</span>
+							<span class="tag">Security Management</span>
+							<span class="tag">Audit Readiness</span>
+						</div>
+						<div class="pricing-tag">Custom Pricing</div>
+					</div>
+
+					<div class="company-card">
+						<h3>Apptega</h3>
+						<p>Cybersecurity management platform that helps organizations build, manage and report their cybersecurity program.</p>
+						<div>
+							<span class="tag">Compliance Management</span>
+							<span class="tag">Framework Mapping</span>
+							<span class="tag">Security Program</span>
+						</div>
+						<div class="pricing-tag">Starting at $7K/year</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="category">
+				<h2>Infrastructure & DevSecOps Solutions</h2>
+				<p>These solutions help organizations build and maintain secure infrastructure that meets SOC 2 requirements.</p>
+				
+				<div class="company-grid">
+					<div class="company-card">
+						<h3>DuploCloud</h3>
+						<p>DevOps automation and compliance platform that helps build and operate secure cloud infrastructure.</p>
+						<div>
+							<span class="tag">Infrastructure Automation</span>
+							<span class="tag">DevSecOps</span>
+							<span class="tag">Cloud Security</span>
+						</div>
+						<div class="pricing-tag">Usage-based Pricing</div>
+					</div>
+					
+					<div class="company-card">
+						<h3>Datadog</h3>
+						<p>Monitoring and security platform that helps track infrastructure, application performance, and security events.</p>
+						<div>
+							<span class="tag">Monitoring</span>
+							<span class="tag">Log Management</span>
+							<span class="tag">Security Monitoring</span>
+						</div>
+						<div class="pricing-tag">Per-host Pricing</div>
+					</div>
+					
+					<div class="company-card">
+						<h3>Compliance Scorecard</h3>
+						<p>Platform that evaluates and scores your organization's security posture against compliance frameworks.</p>
+						<div>
+							<span class="tag">Security Scoring</span>
+							<span class="tag">Gap Analysis</span>
+							<span class="tag">Compliance Tracking</span>
+						</div>
+						<div class="pricing-tag">Subscription-based</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="cta">
+				<h2>Start Your SOC 2 Compliance Journey Today</h2>
+				<p>
+					Achieving SOC 2 compliance demonstrates your commitment to security and can be a competitive advantage.
+					Choose the right partners to make your compliance journey smoother and more efficient.
+				</p>
+			</section>
 		</main>
 		<Footer />
 	</body>
