@@ -11,9 +11,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<BaseHead title="SOC 2 Compliance Solutions Directory" description="A comprehensive directory of companies offering SOC 2 compliance solutions and services" />
 		<style>
 			.container {
-				max-width: 1400px;
+				width: 100%;
+				max-width: 100%;
 				margin: 0 auto;
-				padding: 0 2rem;
+				padding: 0 1rem;
 			}
 			
 			.intro {
@@ -49,21 +50,21 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			
 			.company-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-				gap: 2rem;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				gap: 1.5rem;
 			}
 			
 			.company-card {
 				background: white;
 				border-radius: 8px;
 				box-shadow: 0 4px 8px rgba(var(--gray), 25%);
-				padding: 1.5rem;
-				margin: 0.5rem;
-				border: 1px solid rgba(var(--gray-light), 0.5);
+				padding: 1.25rem;
+				margin: 0;
 				transition: transform 0.3s ease, box-shadow 0.3s ease;
 				height: 100%;
 				display: flex;
 				flex-direction: column;
+				border: 1px solid rgba(var(--gray-light), 0.5);
 			}
 			
 			.company-card:hover {
@@ -105,25 +106,25 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			
 			@media (min-width: 1400px) {
 				.company-grid {
-					grid-template-columns: repeat(4, 1fr);
+					grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 				}
 			}
 			
 			@media (min-width: 992px) and (max-width: 1399px) {
 				.company-grid {
-					grid-template-columns: repeat(3, 1fr);
+					grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 				}
 			}
 			
 			@media (min-width: 768px) and (max-width: 991px) {
 				.company-grid {
-					grid-template-columns: repeat(2, 1fr);
+					grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 				}
 			}
 			
 			@media (max-width: 767px) {
 				.company-grid {
-					grid-template-columns: 1fr;
+					grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 				}
 			}
 		</style>
