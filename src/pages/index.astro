@@ -49,9 +49,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			}
 			
 			.company-grid {
-				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-				gap: 20rem;
+			  display: grid;
+			  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+			  column-gap: 2.5rem;  /* Horizontal gap between columns */
+			  row-gap: 7rem;       /* Vertical gap between rows */
 			}
 			
 			.company-card {
