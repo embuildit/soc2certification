@@ -20,17 +20,18 @@ const posts = (await getCollection('blog')).sort(
 				width: 80%;
 				max-width: 1600px;
 				margin: 0 auto;
+				padding: 2rem 0;
 			}
 			ul {
 				display: flex;
 				flex-wrap: wrap;
-				gap: 2rem;
+				gap: 1.5rem;
 				list-style-type: none;
 				margin: 0;
 				padding: 0;
 			}
 			ul li {
-				width: calc(50% - 1rem);
+				width: calc(50% - 0.75rem);
 			}
 			ul li * {
 				text-decoration: none;
@@ -43,13 +44,18 @@ const posts = (await getCollection('blog')).sort(
 			}
 			ul li:first-child img {
 				width: 100%;
+				max-height: 300px;
+				object-fit: cover;
 			}
 			ul li:first-child .title {
-				font-size: 2.369rem;
+				font-size: 2rem;
 			}
 			ul li img {
 				margin-bottom: 0.5rem;
 				border-radius: 12px;
+				max-height: 180px;
+				object-fit: cover;
+				width: 100%;
 			}
 			ul li a {
 				display: block;
@@ -57,7 +63,8 @@ const posts = (await getCollection('blog')).sort(
 			.title {
 				margin: 0;
 				color: rgb(var(--black));
-				line-height: 1;
+				line-height: 1.2;
+				font-size: 1.4rem;
 			}
 			.date {
 				margin: 0;
@@ -70,9 +77,13 @@ const posts = (await getCollection('blog')).sort(
 			ul a:hover img {
 				box-shadow: var(--box-shadow);
 			}
+			.blog-title {
+				text-align: center;
+				margin-bottom: 2rem;
+			}
 			@media (max-width: 720px) {
 				ul {
-					gap: 0.5em;
+					gap: 1rem;
 				}
 				ul li {
 					width: 100%;
@@ -82,7 +93,10 @@ const posts = (await getCollection('blog')).sort(
 					margin-bottom: 0;
 				}
 				ul li:first-child .title {
-					font-size: 1.563em;
+					font-size: 1.5em;
+				}
+				main {
+					width: 90%;
 				}
 			}
 		</style>
@@ -90,13 +104,14 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main>
+			<h1 class="blog-title">SOC 2 Compliance Blog</h1>
 			<section>
 				<ul>
 					{
 						posts.map((post) => (
 							<li>
 								<a href={`/blog/${post.id}/`}>
-									<img width={720} height={360} src={post.data.heroImage} alt="" />
+									<img width={720} height={240} src={post.data.heroImage} alt="" />
 									<h4 class="title">{post.data.title}</h4>
 									<p class="date">
 										<FormattedDate date={post.data.pubDate} />
