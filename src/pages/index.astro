@@ -1,111 +1,453 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
-
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title="SOC 2 Compliance Solutions Directory" description="A comprehensive directory of companies offering SOC 2 compliance solutions and services" />
 		<style>
-			main {
+			.container {
 				width: 80%;
 				max-width: 1600px;
 				margin: 0 auto;
+				padding: 0 1rem;
 			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
+			
+			.intro {
+				text-align: center;
+				margin-bottom: 3rem;
 			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
+			
+			.intro h1 {
+				font-size: 2.5rem;
 				margin-bottom: 1rem;
+				color: var(--accent-dark);
+			}
+			
+			.intro p {
+				font-size: 1.2rem;
+				max-width: 800px;
+				margin: 0 auto;
+				line-height: 1.6;
+			}
+			
+			.category-section {
+				margin-bottom: 4rem;
+			}
+			
+			.category-title {
+				font-size: 1.8rem;
+				margin-bottom: 2rem;
+				color: var(--accent);
+				border-bottom: 2px solid var(--accent);
+				padding-bottom: 0.5rem;
 				text-align: center;
 			}
-			ul li:first-child img {
-				width: 100%;
+			
+			.company-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+				gap: 2.5rem;
 			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
+			
+			.company-card {
+				background: white;
+				border-radius: 10px;
+				box-shadow: 0 4px 8px rgba(var(--gray), 25%);
+				padding: 1.5rem;
 				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				border: 1px solid rgba(var(--gray-light), 0.5);
 			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
+			
+			.company-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 8px 16px rgba(var(--gray), 30%);
 			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
+			
+			.company-name {
+				font-size: 1.2rem;
+				font-weight: bold;
+				margin-bottom: 0.75rem;
+				color: var(--accent-dark);
 			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
+			
+			.company-description {
+				color: rgb(var(--gray-dark));
+				font-size: 0.95rem;
+				line-height: 1.5;
+				flex-grow: 1;
+				margin-bottom: 1rem;
 			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
+			
+			.company-link {
+				display: inline-block;
+				margin-top: auto;
+				padding: 0.5rem 1rem;
+				color: white;
+				background-color: var(--accent);
+				font-weight: bold;
+				text-decoration: none;
+				transition: all 0.2s ease;
+				border-radius: 4px;
+				text-align: center;
+				align-self: flex-start;
+			}
+			
+			.company-link:hover {
+				background-color: var(--accent-dark);
+				transform: translateY(-2px);
+			}
+			
+			main {
+				padding: 2rem 0 4rem;
+			}
+			
+			@media (min-width: 1400px) {
+				.company-grid {
+					grid-template-columns: repeat(3, 1fr);
 				}
-				ul li {
-					width: 100%;
-					text-align: center;
+			}
+			
+			@media (min-width: 992px) and (max-width: 1399px) {
+				.company-grid {
+					grid-template-columns: repeat(3, 1fr);
 				}
-				ul li:first-child {
-					margin-bottom: 0;
+			}
+			
+			@media (min-width: 768px) and (max-width: 991px) {
+				.company-grid {
+					grid-template-columns: repeat(2, 1fr);
 				}
-				ul li:first-child .title {
-					font-size: 1.563em;
+			}
+			
+			@media (max-width: 767px) {
+				.company-grid {
+					grid-template-columns: 1fr;
+				}
+				
+				.container {
+					width: 95%;
 				}
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									<img width={720} height={360} src={post.data.heroImage} alt="" />
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
+		<main class="container">
+			<section class="intro">
+				<h1>SOC 2 Compliance Solutions Directory</h1>
+				<p>
+					Discover top companies providing SOC 2 compliance services, automation platforms, security tools, 
+					and consulting services to help your organization achieve and maintain compliance with SOC 2 standards.
+				</p>
+			</section>
+			
+			<!-- Compliance Automation Platforms -->
+			<section class="category-section">
+				<h2 class="category-title">Compliance Automation Platforms</h2>
+				<div class="company-grid">
+					<div class="company-card">
+						<h3 class="company-name">Drata</h3>
+						<p class="company-description">
+							Automated compliance platform that helps companies achieve and maintain SOC 2, ISO 27001, 
+							HIPAA, and other compliance frameworks with continuous monitoring and evidence collection.
+						</p>
+						<a href="https://drata.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Vanta</h3>
+						<p class="company-description">
+							Automated security monitoring platform that helps companies prepare for and maintain SOC 2, 
+							ISO 27001, and HIPAA compliance with real-time monitoring.
+						</p>
+						<a href="https://www.vanta.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Secureframe</h3>
+						<p class="company-description">
+							Automated compliance platform helping companies get and maintain SOC 2, ISO 27001, 
+							HIPAA, PCI DSS, and GDPR compliance with continuous monitoring.
+						</p>
+						<a href="https://www.secureframe.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Koop</h3>
+						<p class="company-description">
+							Helps startups and SMBs achieve SOC 2 compliance through automation, 
+							integrating with existing tools to continuously monitor security controls.
+						</p>
+						<a href="https://www.koop.ai/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Sprinto</h3>
+						<p class="company-description">
+							Automation platform helping SaaS companies achieve and maintain SOC 2, 
+							ISO 27001, GDPR, and HIPAA compliance with minimal manual effort.
+						</p>
+						<a href="https://www.sprinto.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Scytale</h3>
+						<p class="company-description">
+							Automated compliance platform that streamlines SOC 2, ISO 27001, and 
+							HIPAA compliance with AI-powered automation and continuous monitoring.
+						</p>
+						<a href="https://scytale.ai/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Consulting & Advisory Services -->
+			<section class="category-section">
+				<h2 class="category-title">Consulting & Advisory Services</h2>
+				<div class="company-grid">
+					<div class="company-card">
+						<h3 class="company-name">Pumpkin Security</h3>
+						<p class="company-description">
+							Cybersecurity consulting firm offering SOC 2 readiness assessments, 
+							gap analyses, and implementation guidance for organizations.
+						</p>
+						<a href="https://www.pumpkinsecurity.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">AuditOne</h3>
+						<p class="company-description">
+							Compliance advisory firm specializing in SOC 2 readiness, gap assessments, 
+							and preparation services to help organizations prepare for audits.
+						</p>
+						<a href="https://www.auditone.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Laika</h3>
+						<p class="company-description">
+							Compliance platform and professional services firm helping companies 
+							establish and maintain robust compliance programs.
+						</p>
+						<a href="https://www.heylaika.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Tevora</h3>
+						<p class="company-description">
+							Security consulting firm providing SOC 2 readiness and advisory services, 
+							along with other security and compliance solutions.
+						</p>
+						<a href="https://www.tevora.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Praetorian</h3>
+						<p class="company-description">
+							Cybersecurity company offering offensive security testing, advisory 
+							services, and compliance assistance for organizations.
+						</p>
+						<a href="https://www.praetorian.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">24By7Security</h3>
+						<p class="company-description">
+							Cybersecurity and compliance advisory firm offering SOC 2 readiness 
+							services, risk assessments, and security program development.
+						</p>
+						<a href="https://www.24by7security.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Cloud Infrastructure & DevSecOps -->
+			<section class="category-section">
+				<h2 class="category-title">Cloud Infrastructure & DevSecOps</h2>
+				<div class="company-grid">
+					<div class="company-card">
+						<h3 class="company-name">DuploCloud</h3>
+						<p class="company-description">
+							DevOps automation platform that accelerates cloud infrastructure deployment 
+							while ensuring security and compliance with SOC 2.
+						</p>
+						<a href="https://duplocloud.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">JupiterOne</h3>
+						<p class="company-description">
+							Cyber asset management and governance platform that provides visibility 
+							and compliance automation across cloud infrastructure.
+						</p>
+						<a href="https://www.jupiterone.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">AWS Security Hub</h3>
+						<p class="company-description">
+							Security and compliance center for AWS that provides a comprehensive 
+							view of security alerts and compliance status.
+						</p>
+						<a href="https://aws.amazon.com/security-hub/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Lacework</h3>
+						<p class="company-description">
+							Cloud security platform that automates security and compliance across 
+							cloud environments to support SOC 2 requirements.
+						</p>
+						<a href="https://www.lacework.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+
+					<div class="company-card">
+						<h3 class="company-name">Wiz</h3>
+						<p class="company-description">
+							Cloud security platform that helps identify and remediate risks across 
+							cloud environments to maintain compliance standards.
+						</p>
+						<a href="https://www.wiz.io/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">HashiCorp</h3>
+						<p class="company-description">
+							Provides tools for infrastructure automation, security, and networking 
+							that support implementing SOC 2 controls in cloud environments.
+						</p>
+						<a href="https://www.hashicorp.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Audit & Certification Firms -->
+			<section class="category-section">
+				<h2 class="category-title">Audit & Certification Firms</h2>
+				<div class="company-grid">
+					<div class="company-card">
+						<h3 class="company-name">A-LIGN</h3>
+						<p class="company-description">
+							Security and compliance solutions provider offering SOC 2 audit and 
+							attestation services, as well as multiple other compliance frameworks.
+						</p>
+						<a href="https://www.a-lign.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Schellman</h3>
+						<p class="company-description">
+							Independent security and privacy compliance assessor providing SOC 2 
+							attestation and other compliance services across various industries.
+						</p>
+						<a href="https://www.schellman.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">KirkpatrickPrice</h3>
+						<p class="company-description">
+							Information security assurance firm providing SOC audit services and 
+							readiness assistance for organizations seeking compliance.
+						</p>
+						<a href="https://kirkpatrickprice.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Cyver</h3>
+						<p class="company-description">
+							Compliance advisory firm specializing in helping SaaS companies prepare 
+							for and maintain SOC 2 compliance efficiently.
+						</p>
+						<a href="https://www.cyver.io/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">IS Partners LLC</h3>
+						<p class="company-description">
+							CPA firm specializing in SOC audits, IT compliance, cybersecurity 
+							assessments, and providing various certification services.
+						</p>
+						<a href="https://www.ispartnersllc.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">BARR Advisory</h3>
+						<p class="company-description">
+							Cybersecurity and compliance firm specializing in SOC examinations, 
+							security consulting, and compliance advisory services.
+						</p>
+						<a href="https://barradvisory.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Security Tools & Infrastructure -->
+			<section class="category-section">
+				<h2 class="category-title">Security Tools & Infrastructure</h2>
+				<div class="company-grid">
+					<div class="company-card">
+						<h3 class="company-name">Okta</h3>
+						<p class="company-description">
+							Identity and access management platform that helps organizations 
+							secure user authentication and access for SOC 2 compliance.
+						</p>
+						<a href="https://www.okta.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Snyk</h3>
+						<p class="company-description">
+							Developer security platform that helps find and fix vulnerabilities in 
+							code, dependencies, containers, and infrastructure as code.
+						</p>
+						<a href="https://snyk.io/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">OneTrust</h3>
+						<p class="company-description">
+							Privacy, security, and governance platform helping organizations 
+							operationalize compliance across multiple frameworks.
+						</p>
+						<a href="https://www.onetrust.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Cloudflare</h3>
+						<p class="company-description">
+							Network services provider that helps secure web applications, APIs, 
+							and networks, supporting core SOC 2 security controls.
+						</p>
+						<a href="https://www.cloudflare.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Imperva</h3>
+						<p class="company-description">
+							Cybersecurity platform that protects applications, APIs, and data with 
+							advanced security solutions that help with SOC 2 compliance.
+						</p>
+						<a href="https://www.imperva.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">CyberArk</h3>
+						<p class="company-description">
+							Identity security platform focused on privileged access management, 
+							a key control category for SOC 2 compliance.
+						</p>
+						<a href="https://www.cyberark.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+				</div>
 			</section>
 		</main>
 		<Footer />
