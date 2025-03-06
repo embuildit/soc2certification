@@ -43,8 +43,8 @@ body {
   line-height: 1.7;
 }
 main {
-  width: 1200px;
-  max-width: calc(100% - 2em);
+  width: 80%;
+  max-width: 1600px;
   margin: auto;
   padding: 3em 1em;
 }
@@ -131,6 +131,7 @@ hr {
     font-size: 18px;
   }
   main {
+    width: 95%;
     padding: 1em;
   }
 }
