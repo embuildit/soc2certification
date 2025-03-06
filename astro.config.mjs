@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
-  site: 'https://www.soc2certification.com',
+  site: 'https://soc2certification.com',
   integrations: [
     sitemap(),
   ],
@@ -14,7 +14,7 @@ export default defineConfig({
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.soc2certification.com",
+  site: "https://soc2certification.com",
   integrations: [mdx(), sitemap()],
   adapter: cloudflare({
     platformProxy: {
