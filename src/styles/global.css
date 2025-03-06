@@ -514,3 +514,69 @@ li {
   margin: 0 auto;
   opacity: 0.9;
 }
+
+/* Company Cards */
+.company-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.company-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.company-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.company-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  color: var(--accent-dark);
+}
+
+.company-description {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  flex-grow: 1;
+  margin-bottom: 1.25rem;
+}
+
+.company-link {
+  align-self: flex-start;
+  background: var(--accent);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: auto;
+}
+
+.company-link:hover {
+  background: var(--accent-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .company-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+}
