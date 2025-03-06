@@ -15,3 +15,11 @@ export default defineConfig({
     },
   }),
 });
+
+import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
+
+export default defineConfig({
+  site: 'https://soc2certification.com',
+  integrations: [sitemap()],
+});
