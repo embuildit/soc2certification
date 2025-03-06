@@ -15,7 +15,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<BaseHead title={title} description={description} />
 		<style>
 			main {
-				width: 90%;
+				width: 80%;
 				max-width: 1600px;
 				margin: 0 auto;
 			}
@@ -39,10 +39,6 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				margin: auto;
 				padding: 1em;
 				color: rgb(var(--gray-dark));
-			}
-			.content-container {
-				max-width: 800px;
-				margin: 0 auto;
 			}
 			.title {
 				margin-bottom: 1em;
@@ -112,23 +108,21 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 					{heroImage && <img width={720} height={300} src={heroImage} alt="" />}
 				</div>
 				<div class="prose">
-					<div class="content-container">
-						<div class="title">
-							<div class="date">
-								<FormattedDate date={pubDate} />
-								{
-									updatedDate && (
-										<div class="last-updated-on">
-											Last updated on <FormattedDate date={updatedDate} />
-										</div>
-									)
-								}
-							</div>
-							<h1>{title}</h1>
-							<hr />
+					<div class="title">
+						<div class="date">
+							<FormattedDate date={pubDate} />
+							{
+								updatedDate && (
+									<div class="last-updated-on">
+										Last updated on <FormattedDate date={updatedDate} />
+									</div>
+								)
+							}
 						</div>
-						<slot />
+						<h1>{title}</h1>
+						<hr />
 					</div>
+					<slot />
 				</div>
 			</article>
 		</main>
