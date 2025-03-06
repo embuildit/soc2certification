@@ -19,31 +19,28 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			
 			.intro {
 				text-align: center;
-				margin: 2rem auto 4rem;
-				max-width: 800px;
+				margin-bottom: 3rem;
 			}
 			
 			.intro h1 {
-				font-size: 2.2rem;
+				font-size: 2.5rem;
 				margin-bottom: 1rem;
 				color: var(--accent-dark);
 			}
 			
 			.intro p {
-				font-size: 1.1rem;
+				font-size: 1.2rem;
+				max-width: 800px;
+				margin: 0 auto;
 				line-height: 1.6;
 			}
 			
 			.category-section {
 				margin-bottom: 4rem;
-				padding: 1rem;
-				background-color: rgba(255, 255, 255, 0.7);
-				border-radius: 8px;
-				box-shadow: 0 2px 8px rgba(var(--gray), 10%);
 			}
 			
 			.category-title {
-				font-size: 1.6rem;
+				font-size: 1.8rem;
 				margin-bottom: 2rem;
 				color: var(--accent);
 				border-bottom: 2px solid var(--accent);
@@ -54,14 +51,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			.company-grid {
 				display: grid;
 				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-				gap: 1.5rem;
+				gap: 2rem;
 			}
 			
 			.company-card {
 				background: white;
-				border-radius: 8px;
-				box-shadow: 0 3px 6px rgba(var(--gray), 20%);
-				padding: 1.25rem;
+				border-radius: 10px;
+				box-shadow: 0 4px 8px rgba(var(--gray), 25%);
+				padding: 1.5rem;
+				margin: 0;
 				transition: transform 0.3s ease, box-shadow 0.3s ease;
 				height: 100%;
 				display: flex;
@@ -71,13 +69,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			
 			.company-card:hover {
 				transform: translateY(-5px);
-				box-shadow: 0 6px 12px rgba(var(--gray), 25%);
+				box-shadow: 0 8px 16px rgba(var(--gray), 30%);
 			}
 			
 			.company-name {
 				font-size: 1.2rem;
 				font-weight: bold;
-				margin-bottom: 0.5rem;
+				margin-bottom: 0.75rem;
 				color: var(--accent-dark);
 			}
 			
@@ -86,11 +84,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				font-size: 0.95rem;
 				line-height: 1.5;
 				flex-grow: 1;
+				margin-bottom: 1rem;
 			}
 			
 			.company-link {
 				display: inline-block;
-				margin-top: 1rem;
+				margin-top: auto;
 				padding: 0.5rem 1rem;
 				color: white;
 				background-color: var(--accent);
@@ -99,6 +98,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				transition: all 0.2s ease;
 				border-radius: 4px;
 				text-align: center;
+				align-self: flex-start;
 			}
 			
 			.company-link:hover {
@@ -106,24 +106,35 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				transform: translateY(-2px);
 			}
 			
+			main {
+				padding: 2rem 0 4rem;
+			}
+			
 			@media (min-width: 1400px) {
-				.container {
-					width: 85%;
-				}
 				.company-grid {
-					grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+					grid-template-columns: repeat(3, 1fr);
 				}
 			}
 			
-			@media (max-width: 768px) {
+			@media (min-width: 992px) and (max-width: 1399px) {
+				.company-grid {
+					grid-template-columns: repeat(3, 1fr);
+				}
+			}
+			
+			@media (min-width: 768px) and (max-width: 991px) {
+				.company-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+			
+			@media (max-width: 767px) {
+				.company-grid {
+					grid-template-columns: 1fr;
+				}
+				
 				.container {
 					width: 95%;
-				}
-				.company-grid {
-					grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-				}
-				.intro h1 {
-					font-size: 2rem;
 				}
 			}
 		</style>
@@ -196,6 +207,87 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 						</p>
 						<a href="https://www.scrut.io/" class="company-link" target="_blank">Visit Website</a>
 					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Scytale</h3>
+						<p class="company-description">
+							Automated compliance platform that streamlines SOC 2, ISO 27001, and 
+							HIPAA compliance with AI-powered automation and continuous monitoring.
+						</p>
+						<a href="https://scytale.ai/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Tugboat Logic (by OneTrust)</h3>
+						<p class="company-description">
+							Security assurance platform that automates information security program 
+							creation and audit readiness for SOC 2, ISO 27001, and other frameworks.
+						</p>
+						<a href="https://tugboatlogic.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Hyperproof</h3>
+						<p class="company-description">
+							Compliance operations platform that helps organizations manage compliance 
+							programs and prepare for audits across multiple frameworks.
+						</p>
+						<a href="https://hyperproof.io/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Ostendio</h3>
+						<p class="company-description">
+							Integrated risk management platform that simplifies the process of 
+							building, operating, and showcasing security and compliance programs.
+						</p>
+						<a href="https://www.ostendio.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Apptega</h3>
+						<p class="company-description">
+							Cybersecurity and compliance platform that helps organizations build, 
+							manage and report on their security programs across frameworks.
+						</p>
+						<a href="https://www.apptega.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Compliance Scorecard</h3>
+						<p class="company-description">
+							Helps organizations streamline compliance with automated evidence 
+							collection, management, and reporting for multiple frameworks.
+						</p>
+						<a href="https://compliancescorecard.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">TrustCloud</h3>
+						<p class="company-description">
+							Compliance automation platform that helps companies build trust by 
+							managing and simplifying security compliance requirements.
+						</p>
+						<a href="https://www.trustcloud.ai/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+
+					<div class="company-card">
+						<h3 class="company-name">Strike Graph</h3>
+						<p class="company-description">
+							Right-sized compliance platform that helps businesses achieve SOC 2 
+							and other security certifications with customized security programs.
+						</p>
+						<a href="https://strikegraph.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">ComplySci</h3>
+						<p class="company-description">
+							Compliance management platform designed to help businesses meet 
+							regulatory requirements and reduce compliance risk.
+						</p>
+						<a href="https://www.complysci.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
 				</div>
 			</section>
 			
@@ -255,6 +347,24 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 							services and other compliance and security solutions.
 						</p>
 						<a href="https://www.bdo.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Prescient Security</h3>
+						<p class="company-description">
+							Security and compliance firm providing SOC 2 readiness, gap assessments, 
+							and audit services for organizations seeking compliance.
+						</p>
+						<a href="https://www.prescientsecurity.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+
+					<div class="company-card">
+						<h3 class="company-name">BARR Advisory</h3>
+						<p class="company-description">
+							Cybersecurity and compliance firm specializing in SOC examinations, 
+							security consulting, and compliance advisory services.
+						</p>
+						<a href="https://barradvisory.com/" class="company-link" target="_blank">Visit Website</a>
 					</div>
 				</div>
 			</section>
@@ -316,6 +426,129 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 						</p>
 						<a href="https://www.brightdefense.com/" class="company-link" target="_blank">Visit Website</a>
 					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Okta</h3>
+						<p class="company-description">
+							Identity and access management platform that helps organizations 
+							secure user authentication and access for SOC 2 compliance.
+						</p>
+						<a href="https://www.okta.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">AWS Security Hub</h3>
+						<p class="company-description">
+							Security and compliance center for AWS that provides a comprehensive 
+							view of security alerts and compliance status.
+						</p>
+						<a href="https://aws.amazon.com/security-hub/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Lacework</h3>
+						<p class="company-description">
+							Cloud security platform that automates security and compliance across 
+							cloud environments to support SOC 2 requirements.
+						</p>
+						<a href="https://www.lacework.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+
+					<div class="company-card">
+						<h3 class="company-name">Wiz</h3>
+						<p class="company-description">
+							Cloud security platform that helps identify and remediate risks across 
+							cloud environments to maintain compliance standards.
+						</p>
+						<a href="https://www.wiz.io/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+
+					<div class="company-card">
+						<h3 class="company-name">Snyk</h3>
+						<p class="company-description">
+							Developer security platform that helps find and fix vulnerabilities in 
+							code, dependencies, containers, and infrastructure as code.
+						</p>
+						<a href="https://snyk.io/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Cloud Infrastructure & DevSecOps -->
+			<section class="category-section">
+				<h2 class="category-title">Cloud Infrastructure & DevSecOps</h2>
+				<div class="company-grid">
+					<div class="company-card">
+						<h3 class="company-name">DuploCloud</h3>
+						<p class="company-description">
+							DevOps automation platform that accelerates cloud infrastructure deployment 
+							while ensuring security and compliance with SOC 2.
+						</p>
+						<a href="https://duplocloud.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">JupiterOne</h3>
+						<p class="company-description">
+							Cyber asset management and governance platform that provides visibility 
+							and compliance automation across cloud infrastructure.
+						</p>
+						<a href="https://www.jupiterone.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Mondoo</h3>
+						<p class="company-description">
+							Security and compliance platform for infrastructure that helps 
+							organizations assess, remediate, and monitor compliance across clouds.
+						</p>
+						<a href="https://mondoo.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Pulumi</h3>
+						<p class="company-description">
+							Infrastructure as Code platform that helps organizations deploy and 
+							manage cloud infrastructure with security controls built in.
+						</p>
+						<a href="https://www.pulumi.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">HashiCorp</h3>
+						<p class="company-description">
+							Provides tools for infrastructure automation, security, and networking 
+							that support implementing SOC 2 controls in cloud environments.
+						</p>
+						<a href="https://www.hashicorp.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Bridgecrew</h3>
+						<p class="company-description">
+							Cloud security platform that automates security and compliance for 
+							infrastructure as code and cloud resources.
+						</p>
+						<a href="https://bridgecrew.io/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Orca Security</h3>
+						<p class="company-description">
+							Cloud security platform that provides comprehensive visibility and 
+							protection for workloads and infrastructure across cloud providers.
+						</p>
+						<a href="https://orca.security/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Cloudflare</h3>
+						<p class="company-description">
+							Network services provider that helps secure web applications, APIs, 
+							and networks, supporting core SOC 2 security controls.
+						</p>
+						<a href="https://www.cloudflare.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
 				</div>
 			</section>
 			
@@ -375,6 +608,24 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 							services, risk assessments, and security program development.
 						</p>
 						<a href="https://www.24by7security.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">KirkpatrickPrice</h3>
+						<p class="company-description">
+							Information security assurance firm providing SOC audit services and 
+							readiness assistance for organizations seeking compliance.
+						</p>
+						<a href="https://kirkpatrickprice.com/" class="company-link" target="_blank">Visit Website</a>
+					</div>
+					
+					<div class="company-card">
+						<h3 class="company-name">Cyver</h3>
+						<p class="company-description">
+							Compliance advisory firm specializing in helping SaaS companies prepare 
+							for and maintain SOC 2 compliance efficiently.
+						</p>
+						<a href="https://www.cyver.io/" class="company-link" target="_blank">Visit Website</a>
 					</div>
 				</div>
 			</section>
