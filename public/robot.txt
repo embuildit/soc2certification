@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+
+# Allow common bots additional access
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
