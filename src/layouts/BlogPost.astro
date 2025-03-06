@@ -1,98 +1,203 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { getCollection } from 'astro:content';
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+
+// Get posts for related articles
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(post => post.data.title !== title) // Exclude current post
+  .slice(0, 3); // Get up to 3 related posts
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
-			main {
-				width: 80%;
-				max-width: 1000px;
-				margin: 0 auto;
+			.blog-hero {
+				position: relative;
+				padding-top: 2rem;
+				margin-bottom: 2rem;
+				background-color: #f8fafc;
 			}
-			.hero-image {
+			
+			.blog-header {
+				text-align: center;
+				max-width: 900px;
+				margin: 0 auto 2rem;
+				padding: 0 1rem;
+			}
+			
+			.blog-title {
+				font-size: 2.5rem;
+				line-height: 1.2;
+				margin-bottom: 1rem;
+				color: #1e293b;
+			}
+			
+			.blog-meta {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 1rem;
+				color: #64748b;
+				font-size: 0.95rem;
+				margin-bottom: 1.5rem;
+			}
+			
+			.blog-meta time {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+			
+			.blog-meta i {
+				font-size: 1rem;
+			}
+			
+			.blog-hero-image {
 				width: 100%;
-				max-height: 300px;
-				overflow: hidden;
-			}
-			.hero-image img {
-				display: block;
+				max-width: 900px;
 				margin: 0 auto;
 				border-radius: 12px;
-				box-shadow: var(--box-shadow);
+				overflow: hidden;
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+			}
+			
+			.blog-hero-image img {
 				width: 100%;
-				height: 300px;
+				height: auto;
 				object-fit: cover;
+				display: block;
 			}
-			.prose {
-				width: 100%;
+			
+			.blog-content {
 				max-width: 800px;
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
+				margin: 0 auto;
+				padding: 2rem 1rem;
 			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
+			
+			.prose {
+				line-height: 1.7;
+				color: #334155;
 			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-				font-size: 2.2rem;
+			
+			.prose h1, .prose h2, .prose h3, .prose h4 {
+				color: #1e293b;
+				margin-top: 1.5em;
+				margin-bottom: 0.75em;
 			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
+			
 			.prose h1 {
 				font-size: 2.2rem;
 			}
+			
 			.prose h2 {
 				font-size: 1.8rem;
+				border-bottom: 1px solid #e2e8f0;
+				padding-bottom: 0.5rem;
 			}
+			
 			.prose h3 {
 				font-size: 1.5rem;
 			}
-			.prose h4 {
-				font-size: 1.3rem;
+			
+			.prose p {
+				margin-bottom: 1.5em;
 			}
-			.prose p, .prose li {
-				font-size: 1rem;
-				line-height: 1.6;
-				margin-bottom: 1.2em;
-				overflow-wrap: break-word;
-				word-wrap: break-word;
-				hyphens: auto;
+			
+			.prose img {
+				max-width: 100%;
+				height: auto;
+				border-radius: 8px;
+				margin: 1.5rem 0;
 			}
+			
+			.prose a {
+				color: var(--accent);
+				text-decoration: none;
+				border-bottom: 1px solid currentColor;
+			}
+			
+			.prose a:hover {
+				border-bottom-color: transparent;
+			}
+			
+			.prose ul, .prose ol {
+				margin-bottom: 1.5em;
+				padding-left: 1.5em;
+			}
+			
+			.prose li {
+				margin-bottom: 0.5em;
+			}
+			
+			.prose code {
+				background-color: #f1f5f9;
+				padding: 0.2em 0.4em;
+				border-radius: 4px;
+				font-size: 0.9em;
+				font-family: 'Courier New', Courier, monospace;
+			}
+			
+			.prose pre {
+				background-color: #1e293b;
+				color: #e2e8f0;
+				padding: 1em;
+				border-radius: 8px;
+				overflow-x: auto;
+				margin: 1.5em 0;
+			}
+			
+			.prose pre code {
+				background-color: transparent;
+				color: inherit;
+				padding: 0;
+				font-size: 0.9em;
+			}
+			
+			.related-posts {
+				margin-top: 4rem;
+				padding-top: 2rem;
+				border-top: 1px solid #e2e8f0;
+			}
+			
+			.related-posts h3 {
+				font-size: 1.5rem;
+				margin-bottom: 1.5rem;
+				text-align: center;
+			}
+			
+			.related-posts-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+				gap: 1.5rem;
+			}
+			
 			@media (max-width: 768px) {
-				main {
-					width: 95%;
+				.blog-title {
+					font-size: 2rem;
 				}
-				.prose {
-					padding: 0.5em;
+				
+				.blog-hero-image {
+					border-radius: 8px;
 				}
-				.title h1 {
-					font-size: 1.8rem;
-				}
+				
 				.prose h1 {
 					font-size: 1.8rem;
 				}
+				
 				.prose h2 {
 					font-size: 1.5rem;
 				}
+				
 				.prose h3 {
 					font-size: 1.3rem;
 				}
@@ -102,30 +207,58 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 	<body>
 		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <img width={720} height={300} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
+		
+		<article>
+			<div class="blog-hero">
+				<div class="blog-header">
+					<h1 class="blog-title">{title}</h1>
+					<div class="blog-meta">
+						<time datetime={pubDate.toISOString()}>
+							<i class="fa-regular fa-calendar"></i>
 							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
+						</time>
+						{updatedDate && (
+							<time datetime={updatedDate.toISOString()}>
+								<i class="fa-solid fa-refresh"></i>
+								Updated: <FormattedDate date={updatedDate} />
+							</time>
+						)}
 					</div>
+				</div>
+				
+				{heroImage && (
+					<div class="blog-hero-image">
+						<img src={heroImage} alt={title} />
+					</div>
+				)}
+			</div>
+			
+			<div class="blog-content">
+				<div class="prose">
 					<slot />
 				</div>
-			</article>
-		</main>
+				
+				{relatedPosts.length > 0 && (
+					<div class="related-posts">
+						<h3>Related Articles</h3>
+						<div class="related-posts-grid">
+							{relatedPosts.map(post => (
+								<a href={`/blog/${post.id}/`} class="blog-card">
+									<div class="blog-card-image">
+										<img src={post.data.heroImage} alt={post.data.title} />
+									</div>
+									<div class="blog-card-content">
+										<h4 class="blog-card-title">{post.data.title}</h4>
+										<span class="blog-card-link">Read Article</span>
+									</div>
+								</a>
+							))}
+						</div>
+					</div>
+				)}
+			</div>
+		</article>
+		
 		<Footer />
 	</body>
 </html>
