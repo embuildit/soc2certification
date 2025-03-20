@@ -62,7 +62,7 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     // Find all links to the sponsor
-    const sponsorLinks = document.querySelectorAll('a[href*="trycomp.ai"]');
+    const sponsorLinks = document.querySelectorAll('a[href*="sprinto.com"]');
     
     // Add click event listeners to each sponsor link
     sponsorLinks.forEach(link => {
@@ -72,7 +72,7 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
           // Send the event to Google Analytics
           gtag('event', 'sponsor_click', {
             'event_category': 'Outbound Links',
-            'event_label': 'trycomp.ai Sponsor Link',
+            'event_label': 'sprinto.com Sponsor Link',
             'transport_type': 'beacon'
           });
           
@@ -83,10 +83,9 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
   });
 </script>
 
-<!-- Sponsored Bar
+<!-- Sponsored Bar-->
 <div class="sponsored-bar">
   <div class="container">
-    <span>Proudly sponsored by <a href="https://trycomp.ai" target="_blank">trycomp.ai</a> - Open Source Compliance Automation</span>
+    <span>Proudly sponsored by <a href="https://sprinto.com" target="_blank">Sprinto</a> Rated #1 Compliance Automation Platform</span>
   </div>
 </div>
- -->
